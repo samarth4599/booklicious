@@ -6,6 +6,10 @@ import {TStackNavigationRoute} from '../types/types';
 
 const Stack = createNativeStackNavigator<TStackNavigationRoute>();
 
+/**
+ * Represents the main stack of the application.
+ * This stack contains the bottom navigation bar.
+ */
 const AppStack: FC = () => {
   return (
     <Stack.Navigator

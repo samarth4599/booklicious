@@ -4,10 +4,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  scroll: {
+    flex: 1,
     padding: 20,
   },
-  header: {marginBottom: 10},
-  listHeader: {fontWeight: 'bold', fontSize: 20},
 });
 
 export default styles;
