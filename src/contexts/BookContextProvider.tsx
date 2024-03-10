@@ -4,8 +4,10 @@ import {IBook} from '../types/interfaces';
 export interface IBookProvider {
   books: IBook[];
   results: IBook[];
+  favourites: IBook[];
   setBooks: React.Dispatch<React.SetStateAction<IBook[]>>;
   setResults: React.Dispatch<React.SetStateAction<IBook[]>>;
+  setFavourites: React.Dispatch<React.SetStateAction<IBook[]>>;
 }
 
 // Create a new context for the BookContext
@@ -14,6 +16,8 @@ export const BookContext = createContext<IBookProvider>({
   setBooks: () => {},
   results: [],
   setResults: () => {},
+  favourites: [],
+  setFavourites: () => {},
 });
 
 // Create the BookContextProvider component
@@ -23,15 +27,11 @@ const BookContextProvider: React.FC<{children: ReactElement}> = ({
   // Define the state for the books list
   const [books, setBooks] = useState<IBook[]>([]);
   const [results, setResults] = useState<IBook[]>([]);
+  const [favourites, setFavourites] = useState<IBook[]>([]);
 
-  // Remove a book from the list
-  // const removeBook = (bookId: number) => {
-  //     setBooks(books.filter((book) => book.id !== bookId));
-  // };
-
-  // Provide the books list and the addBook/removeBook functions to the children components
   return (
-    <BookContext.Provider value={{books, setBooks, results, setResults}}>
+    <BookContext.Provider
+      value={{books, setBooks, results, setResults, favourites, setFavourites}}>
       {children}
     </BookContext.Provider>
   );

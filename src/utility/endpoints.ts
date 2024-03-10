@@ -4,4 +4,5 @@ export const END_POINTS = {
     `https://covers.openlibrary.org/b/olid/${id}-${size}.jpg?default=false`,
   searchBook: (query: string) =>
     `https://openlibrary.org/search.json?title=${query}&limit=5`,
+  getDetails: (id: string) => `https://openlibrary.org/${id}.json`,
 };

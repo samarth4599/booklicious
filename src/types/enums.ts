@@ -16,6 +16,7 @@ export enum CONSTANTS {
   GENERIC_ERR_MSG = 'Something went wrong',
   ITEM_HEIGHT = 340,
   ITEM_WIDTH = 220,
+  SAVED_BOOKS = 'savedBooks',
 }
 
 export enum EScreenState {

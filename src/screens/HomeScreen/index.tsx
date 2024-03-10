@@ -27,7 +27,15 @@ const HomeScreen: React.FC = () => {
         method: EReqMethod.GET,
         url: END_POINTS.trending,
       });
-      setBooks(Array.from(new Set(response.works))); // Remove duplicate elements
+      setBooks(
+        Array.from(new Set(response.works)).map((item: any) => ({
+          author_name: item.author_name,
+          title: item.title,
+          cover_edition_key: item.cover_edition_key,
+          key: item.key,
+          first_publish_year: item.first_publish_year,
+        })),
+      ); // Remove duplicate elements
       setState(EScreenState.SUCCESS);
     } catch (error) {
       // Handle the error here

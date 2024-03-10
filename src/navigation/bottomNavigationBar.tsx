@@ -1,9 +1,5 @@
-import {
-  BottomTabHeaderProps,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
-import React, {FC, useCallback} from 'react';
-import {Text} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import React, {FC} from 'react';
 import TabIcon from '../components/TabIcon';
 import FavouritesScreen from '../screens/FavouritesScreen';
 import HomeScreen from '../screens/HomeScreen';
@@ -13,15 +9,6 @@ import styles from './styles';
 
 const BottomNavigationBar: FC = () => {
   const Tab = createBottomTabNavigator<TTabNavigationRoute>();
-
-  const header = useCallback(
-    (props: BottomTabHeaderProps) => (
-      <Text style={styles.title}>
-        {props.route.name.slice(0, 1).toUpperCase() + props.route.name.slice(1)}
-      </Text>
-    ),
-    [],
-  );
 
   return (
     <Tab.Navigator
@@ -40,18 +27,30 @@ const BottomNavigationBar: FC = () => {
       <Tab.Screen
         name={ROUTES.HOME}
         component={HomeScreen}
-        options={{
+        options={props => ({
           headerShown: true,
-          header,
-        }}
+          headerTransparent: true,
+          headerTitleAlign: 'center',
+          headerTitle:
+            props.route.name.slice(0, 1).toUpperCase() +
+            props.route.name.slice(1),
+          headerTitleStyle: styles.title,
+          headerBackgroundContainerStyle: {backgroundColor: 'white'},
+        })}
       />
       <Tab.Screen
         name={ROUTES.FAVORITES}
         component={FavouritesScreen}
-        options={{
+        options={props => ({
           headerShown: true,
-          header,
-        }}
+          headerTransparent: true,
+          headerTitleAlign: 'center',
+          headerTitle:
+            props.route.name.slice(0, 1).toUpperCase() +
+            props.route.name.slice(1),
+          headerTitleStyle: styles.title,
+          headerBackgroundContainerStyle: {backgroundColor: 'white'},
+        })}
       />
     </Tab.Navigator>
   );

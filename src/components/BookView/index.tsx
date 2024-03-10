@@ -1,13 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
-import {useNavigation} from '@react-navigation/native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React, {memo, useCallback, useMemo, useState} from 'react';
 import {ActivityIndicator, Pressable, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {EScreenState} from '../../types/enums';
+import {EScreenState, ROUTES} from '../../types/enums';
 import {END_POINTS} from '../../utility/endpoints';
 import {ICardProps} from './interface';
 import styles from './styles';
-import {err} from 'react-native-svg';
+import {TNavRoutes} from '../../types/types';
 
 /**
  * Renders a card component for displaying book information.
@@ -17,7 +17,7 @@ import {err} from 'react-native-svg';
 
 const Card: React.FC<ICardProps> = ({item, horizontal = false}) => {
   const [state, setState] = useState<EScreenState>(EScreenState.LOADING);
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<TNavRoutes>>();
   const {author_name, title, first_publish_year, cover_edition_key} = item;
 
   // fallback states for the image loading and error states
@@ -42,7 +42,7 @@ const Card: React.FC<ICardProps> = ({item, horizontal = false}) => {
   }, [state]);
 
   const onCardPress = useCallback(() => {
-    navigation.navigate('Details', {item});
+    navigation.navigate(ROUTES.DETAILS, {item});
   }, [navigation, item]);
 
   return (

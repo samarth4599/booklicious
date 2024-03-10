@@ -1,4 +1,6 @@
+import {ToastAndroid} from 'react-native';
 import {CONSTANTS, EReqMethod} from '../types/enums';
+import {isNetworkConnected} from './network.service';
 
 type THttpServiceType = {
   url: string;
@@ -6,17 +8,17 @@ type THttpServiceType = {
   body?: any;
 };
 
+/**
+ * Sends an HTTP request with the specified parameters.
+ * @param param - The parameters for the HTTP request.
+ * @returns A Promise that resolves to the JSON response from the server.
+ */
 export const HttpService = async (param: THttpServiceType) => {
-  // const hasNetwork = await isNetworkConnected();
-  // if (!hasNetwork) {
-  //   return Promise.resolve({
-  //     resultStatus: {
-  //       status: 'ERROR',
-  //       errorMessage: 'Network connection is down',
-  //       errorCode: 65125,
-  //     },
-  //   });
-  // }
+  const hasNetwork = await isNetworkConnected();
+  if (!hasNetwork) {
+    ToastAndroid.show('No Internet !', ToastAndroid.SHORT);
+    return Promise.reject(CONSTANTS.GENERIC_ERR_MSG);
+  }
 
   const {url, method, body = undefined} = param;
 
