@@ -96,8 +96,6 @@ const DetailsScreen: React.FC = () => {
     }
   }, [description, favourites, isSaved, key, route.params.item, setFavourites]);
 
-  console.log('DetailsScreen', isSaved, favourites);
-
   const saveBookIcon = useMemo(
     () => (
       <TouchableOpacity onPress={onSavePress}>
