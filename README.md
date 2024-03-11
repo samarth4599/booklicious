@@ -12,6 +12,14 @@ On tap of any book, User will be redirected to **DetailsScreen** where all the d
 
 If User has added his favourite books, then it will be displayed in the **FavouritesScreen**
 
+# Screenshots 😎
+
+![home](Screenshot_1710131442.png) ![results](Screenshot_1710131500.png)
+
+![Details](Screenshot_1710131566.png) ![favourites_empty](Screenshot_1710132471.png)
+
+![favourites](Screenshot_1710131609.png)
+
 ## Live Demo 👨‍💻
 
 Explore the project on [GitHub](https://github.com/samarth4599/booklicious) or try out the live app by running the app. (npm run android)

@@ -1,5 +1,5 @@
-import React, {useCallback} from 'react';
-import {FlatList, ListRenderItemInfo, View} from 'react-native';
+import React, {useCallback, useMemo} from 'react';
+import {FlatList, ListRenderItemInfo, Text, View} from 'react-native';
 import BookView from '../../components/BookView';
 import {useBooks} from '../../contexts/BookContextProvider';
 import {CONSTANTS} from '../../types/enums';
@@ -21,10 +21,19 @@ const FavouritesScreen: React.FC = () => {
     return <BookView item={item} />;
   }, []);
 
+  const listEmptyComponent = useMemo(() => {
+    return (
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyText}>No favourite books found.</Text>
+      </View>
+    );
+  }, []);
+
   return (
     <View style={styles.container}>
       <FlatList
         data={favourites}
+        ListEmptyComponent={listEmptyComponent}
         renderItem={renderItem}
         keyExtractor={(item, index) => item.title + index}
         getItemLayout={(_data, index) => ({
